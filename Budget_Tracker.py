@@ -13,21 +13,17 @@ def Budget_Input(budget_list, type, description, amount, catagory):
 
     while True:
         if isinstance(amount, str) and amount.lower() == "restart":
-            return None
+            return budget_list
         try:
             amount = float(amount)
-            if type == "income":
-                if amount <= 0:
+            if type == "income" and amount <= 0:
                     print("Amount lower than 0 error \n Please enter a valid number greater than 0 or enter restart if you've made a mistake")
                     amount = input()
-                else:
-                    break
-            if type == "expense":
-                if amount >= 0:
-                    print("Greater than 0 error \n Please enter a valid negative number for this transaction or enter restart if you've made a mistake")
-                    amount = input()
-                else:
-                    break
+            elif type == "expense" and amount >= 0:
+                print("Greater than 0 error \n Please enter a valid negative number for this transaction or enter restart if you've made a mistake")
+                amount = input()
+            else:
+                break
         except ValueError:
             print("amount entered is not a number please enter a valid number or enter restart if you've made a mistake")
             amount = input()
