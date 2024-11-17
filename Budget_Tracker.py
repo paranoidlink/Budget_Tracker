@@ -1,5 +1,15 @@
 import csv
 import sys
+import os
+def Read_File(budget_list):
+    with open("budget.csv", "r") as file:
+        reader = csv.reader(file)
+
+        next(reader)
+
+        for row in reader:
+            budget_list.append(row)
+    return budget_list
 def Save_File(budget_list):
     with open("budget.csv", "a", newline='') as file:
         writer = csv.writer(file)
@@ -78,6 +88,8 @@ def balance_checker(budget_list):
     return result
 
 budget_list = []
+if os.path.exists("budget.csv"):
+    budget_list = Read_File(budget_list)
 print("Hello welcome to the budget tracker enter \'start\' to begin or \'exit\' to exit the program")
 while True:
     response = input()
